@@ -1,48 +1,22 @@
-<!--<div class="p-1">
-  <div class="row">
-      <div class="col-md-4">
-        <input type="text" class="form-control">
-      </div>
-    <div class="col-md-4">
-      <button class="btn btn-primary w-100" (click)="showModal(myModal)"> boton de bootstrap</button>
-    </div>
-  </div>
-</div>
-
-<ng-template #myModal>
-  <div class="modal-header">
-    <h4 class="modal-title pull-left">Titulo del modal</h4>
-  </div>
-
-  <div class="modal-body">
-    cuerpo del modal
-  </div>
-
-  <div class="modal-footer">
-    <button type="button" class="btn btn-secundary" (click)="closeModal()" >cerrar modal</button>
-  </div>
-</ng-template>-->
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">DSW2</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Pagina principal</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/insertData">Registrar datos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/listData">Listar datos</a>
-        </li>
-      </ul>
-    </div>
-  </div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.7);">
+	<div class="container-fluid">
+		<strong class="navbar-brand">DS2</strong>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+				<li class="nav-item">
+					<a class="nav-link active" aria-current="page" href="#">Página principal</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link active" aria-current="page" (click)="changeView('person/insert')">Registrar datos</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link active" aria-current="page" (click)="changeView('person/get-all')">Listar datos</a>
+				</li>
+			</ul>
+		</div>
+	</div>
 </nav>
-
 <router-outlet></router-outlet>

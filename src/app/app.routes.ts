@@ -1,8 +1,9 @@
 import { Routes } from '@angular/router';
-import { InsertDatosComponent } from './insert-datos/insert-datos.component';
+import { PersonInsertComponent } from './insert-datos/insert-datos.component';
 import { ListarDatosComponent } from './listar-datos/listar-datos.component';
 
+
 export const routes: Routes = [
-    {path: 'insertData', component:InsertDatosComponent},
-    {path: 'listData', component:ListarDatosComponent}
+    { path: 'person/insert', component: PersonInsertComponent },
+    { path: 'person/get-all', component: ListarDatosComponent }
 ];
