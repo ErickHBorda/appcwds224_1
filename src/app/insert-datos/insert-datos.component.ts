@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormsModule, ReactiveFormsModule, UntypedFormGroup } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule, UntypedFormGroup, Validators } from '@angular/forms';
 import { PersonService } from '../api/person.service';
 
 @Component({
@@ -27,8 +27,8 @@ export class PersonInsertComponent {
 		private personService: PersonService
 	) {
 		this.frmInsertPerson = this.formBuilder.group({
-			firstName: [null, []],
-			surName: [null, []],
+			firstName: [null, [Validators.required]],
+			surName: [null, [Validators.required]],
 			dni: [null, []],
 			gender: [null, []],
 			birthDate: [null, []]

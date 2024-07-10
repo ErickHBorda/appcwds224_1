@@ -7,16 +7,25 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 				<li class="nav-item">
-					<a class="nav-link active" aria-current="page" href="#">Página principal</a>
+					<a class="nav-link active" aria-current="page" (click)="changeView('principal')">Página principal</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link active" aria-current="page" (click)="changeView('person/insert')">Registrar datos</a>
+					<a class="nav-link active" aria-current="page" (click)="changeView('person/insert')">Registrar Persona</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link active" aria-current="page" (click)="changeView('person/get-all')">Listar datos</a>
+					<a class="nav-link active" aria-current="page" (click)="changeView('person/get-all')">Listar Persona</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link active" aria-current="page" (click)="changeView('oficina/insert')">Registrar Oficina</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link active" aria-current="page" (click)="changeView('oficina/get-all')">Listar Oficina</a>
 				</li>
 			</ul>
 		</div>
 	</div>
 </nav>
 <router-outlet></router-outlet>
+
+
+  

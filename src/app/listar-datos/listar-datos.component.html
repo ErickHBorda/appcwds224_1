@@ -21,7 +21,7 @@
 							<td>{{item.firstName}}</td>
 							<td>{{item.surName}}</td>
 							<td class="text-center">{{item.dni}}</td>
-							<td class="text-center">{{item.gender == 'true' ? 'Masculino' : 'Femenino'}}</td>
+							<td class="text-center">{{item.gender === true || item.gender === 'true' || item.gender === 'Masculino' ? 'Masculino' : 'Femenino'}}</td>
 							<td class="text-center">{{item.birthDate | date:'dd-MM-yyyy'}}</td>
 							<td>
 								<button type="button" class="btn btn-danger btn-sm me-2 text-center" (click)="delete(item.idPerson,$index)">Eliminar</button>
