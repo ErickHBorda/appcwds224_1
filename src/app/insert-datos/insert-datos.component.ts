@@ -29,9 +29,9 @@ export class PersonInsertComponent {
 		this.frmInsertPerson = this.formBuilder.group({
 			firstName: [null, [Validators.required]],
 			surName: [null, [Validators.required]],
-			dni: [null, []],
-			gender: [null, []],
-			birthDate: [null, []]
+			dni: [null, [Validators.required, Validators.pattern(/^([0-9]{8})?$/)]],
+			gender: [null, [Validators.required]],
+			birthDate: [null, [Validators.required]]
 		});
 	}
 
