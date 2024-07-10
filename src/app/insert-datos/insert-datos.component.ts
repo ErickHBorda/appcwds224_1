@@ -36,6 +36,13 @@ export class PersonInsertComponent {
 	}
 
 	onClickBtnSubmit(): void {
+		if(!this.frmInsertPerson.valid) {
+			this.frmInsertPerson.markAllAsTouched();
+			this.frmInsertPerson.markAsDirty();
+
+			return;
+		}
+
 		let formData: FormData = new FormData();
 
 		formData.append('firstName', this.firstNameFb.value);
