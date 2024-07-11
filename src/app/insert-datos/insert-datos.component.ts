@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, UntypedFormGroup, Validators } from '@angular/forms';
 import { PersonService } from '../api/person.service';
+import { CpShowErrorComponent } from "../cp-show-error/cp-show-error.component";
 
 @Component({
 	selector: 'person-insert',
 	standalone: true,
 	imports: [
-		FormsModule,
-		ReactiveFormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    CpShowErrorComponent
 	],
 	templateUrl: './insert-datos.component.html',
 	styleUrl: './insert-datos.component.scss'

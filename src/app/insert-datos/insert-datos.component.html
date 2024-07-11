@@ -9,27 +9,17 @@
 					<div class="col-md-3 mb-3">
 						<label for="" class="form-label">Nombre</label>
 						<input type="text" formControlName="firstName" class="form-control">
-						@if((firstNameFb.touched || firstNameFb.dirty) && firstNameFb.errors && firstNameFb.hasError('required')) {
-							<div style="color: red;font-size: 12px;font-weight: bold;">Este campo es requerido</div>
-						}
+						<cp-show-error [field]="firstNameFb"></cp-show-error>
 					</div>
 					<div class="col-md-3 mb-3">
 						<label for="" class="form-label">Apellido</label>
 						<input type="text" formControlName="surName" class="form-control">
-						@if((surNameFb.touched || surNameFb.dirty) && surNameFb.errors && surNameFb.hasError('required')) {
-							<div style="color: red;font-size: 12px;font-weight: bold;">Este campo es requerido</div>
-						}
+						<cp-show-error [field]="surNameFb"></cp-show-error>
 					</div>
 					<div class="col-md-3 mb-3">
 						<label for="" class="form-label">DNI</label>
 						<input type="text" formControlName="dni" class="form-control">
-						@if((dniFb.touched || dniFb.dirty) && dniFb.errors && dniFb.hasError('required')) {
-							<div style="color: red;font-size: 12px;font-weight: bold;">Este campo es requerido</div>
-						}
-
-						@if((dniFb.touched || dniFb.dirty) && dniFb.errors && dniFb.hasError('pattern')) {
-							<div>Formato incorrecto</div>
-						}
+						<cp-show-error [field]="dniFb"></cp-show-error>
 					</div>
 					<div class="col-md-3 mb-3">
 						<label for="" class="form-label">Género</label>
@@ -43,18 +33,14 @@
 								<input type="radio" formControlName="gender" value="false">
 							</label>
 						</div>
-						@if((genderFb.touched || genderFb.dirty) && genderFb.errors && genderFb.hasError('required')) {
-							<div style="color: red;font-size: 12px;font-weight: bold;">Este campo es requerido</div>
-						}
+						<cp-show-error [field]="genderFb"></cp-show-error>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-3 mb-3">
 						<label for="" class="form-label">Fecha de nacimiento</label>
 						<input type="date" formControlName="birthDate" class="form-control">
-						@if((birthDateFb.touched || birthDateFb.dirty) && birthDateFb.errors && birthDateFb.hasError('required')) {
-							<div style="color: red;font-size: 12px;font-weight: bold;">Este campo es requerido</div>
-						}
+						<cp-show-error [field]="birthDateFb"></cp-show-error>
 					</div>
 				</div>
 				<hr>
