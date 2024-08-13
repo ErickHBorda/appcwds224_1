@@ -12,5 +12,5 @@ export const routes: Routes = [
     { path: 'person/get-all', component: ListarDatosComponent },
     { path: 'oficina/insert', component: InsertDatosOficinaComponent},
     { path: 'oficina/get-all', component: ListarDatosOficinaComponent},
-    { path: 'principal',component: PresentacionComponent}
+    { path: '**',component: PresentacionComponent}
 ];

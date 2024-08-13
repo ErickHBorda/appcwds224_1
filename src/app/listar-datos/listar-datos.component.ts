@@ -1,8 +1,12 @@
 import { Component, TemplateRef } from '@angular/core';
 import { PersonService } from '../api/person.service';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormsModule, ReactiveFormsModule, UntypedFormGroup } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule, UntypedFormGroup, Validators } from '@angular/forms';
 import { BsModalService } from 'ngx-bootstrap/modal';
+import { CpShowErrorComponent } from '../cp-show-error/cp-show-error.component';
+import { Notify } from '../Notify';
+import { error } from '@pnotify/core';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-listar-datos',
@@ -10,7 +14,8 @@ import { BsModalService } from 'ngx-bootstrap/modal';
   imports: [
 		CommonModule,
 		FormsModule,
-		ReactiveFormsModule
+		ReactiveFormsModule,
+		CpShowErrorComponent
   ],
   templateUrl: './listar-datos.component.html',
   styleUrl: './listar-datos.component.scss'
@@ -31,35 +36,36 @@ export class ListarDatosComponent {
 	constructor(
 		private formBuilder: FormBuilder,
 		private personService: PersonService,
-		private modalService: BsModalService
+		private modalService: BsModalService,
+		private notify: Notify
 	) { 
 		this.frmEditPerson = this.formBuilder.group({
-			idPerson: [null, []],
-			firstName: [null, []],
-			surName: [null, []],
-			dni: [null, []],
-			gender: [null, []],
-			birthDate: [null, []]
+			idPerson: ['', [Validators.required]],
+			firstName: ['', [Validators.required]],
+			surName: ['', [Validators.required]],
+			dni: ['', [Validators.required, Validators.pattern(/^([0-9]{8})?$/)]],
+			gender: ['', [Validators.required]],
+			birthDate: ['', [Validators.required]]
 		});
 	}
 
 	ngOnInit() {
 		this.personService.getAll().subscribe({
-			next: (response: any[]) => {
-				this.listPerson = response;
+			next: (response: any) => {
+				this.listPerson = response.dto.listPerson;
 			},
 			error: (error: any) => {
-				console.log(error);
+				console.log('Error: ',error);
 			}
 		});
 	}
 
 	delete(idPerson: String, index:number): void{
 		this.personService.delete(idPerson).subscribe({
-			next: (response: any)=>{
-				this.listPerson.splice(index,1);
+			next: (response: any) => {
+				this.listPerson.splice(index, 1);
 			},
-			error: (error: any)=>{
+			error: (error: any) => {
 				console.log(error);
 			}
 		});
@@ -84,6 +90,11 @@ export class ListarDatosComponent {
 	}
 
 	onClickSaveChanges(): void {
+		/*if(!this.frmEditPerson.valid) {
+			this.frmEditPerson.markAllAsTouched();
+			this.frmEditPerson.markAsDirty();
+			return;
+		}*/
 		let formData: FormData = new FormData();
 
 		formData.append('idPerson', this.idPersonFb.value);
@@ -95,19 +106,38 @@ export class ListarDatosComponent {
 
 		this.personService.update(formData).subscribe({
 			next: (response: any) => {
-				console.log(response);
-
-				this.listPerson[this.indexToModify].firstName = this.firstNameFb.value;
-				this.listPerson[this.indexToModify].surName = this.surNameFb.value;
-				this.listPerson[this.indexToModify].dni = this.dniFb.value;
-				this.listPerson[this.indexToModify].gender = this.genderFb.value;
-				this.listPerson[this.indexToModify].birthDate = this.birthDateFb.value;
-
-				this.modalService.hide();
+				if (response.success) {
+					console.log(response);
+		
+					this.listPerson[this.indexToModify].firstName = this.firstNameFb.value;
+					this.listPerson[this.indexToModify].surName = this.surNameFb.value;
+					this.listPerson[this.indexToModify].dni = this.dniFb.value;
+					this.listPerson[this.indexToModify].gender = this.genderFb.value == 'true';
+					this.listPerson[this.indexToModify].birthDate = this.birthDateFb.value;
+		
+					this.modalService.hide();
+					this.ngOnInit();
+				} else {
+					console.log(response.listMessage);
+					this.modalService.hide();
+					this.showErrors(response.listMessage);
+				}
 			},
 			error: (error: any) => {
-				console.log(error);
+				console.log(error.error.listMessage);
 			}
+		});
+	}
+
+	showErrors(errors: string[]) {
+		errors.forEach((message) => { // Iteramos sobre cada mensaje
+			this.notify.error({
+				title: 'Error:',
+				text: message, // Pasamos el mensaje individualmente
+				nonblock: false,
+				delay: 1200, // Duración de la notificación en milisegundos
+				width: '400px', // Ancho de la notificación
+			});
 		});
 	}
 }

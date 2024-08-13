@@ -7,38 +7,38 @@
 			<form [formGroup]="frmInsertPerson">
 				<div class="row">
 					<div class="col-md-3 mb-3">
-						<label for="" class="form-label">Nombre</label>
+						<label for="firstName" class="form-label">Nombre</label>
 						<input type="text" formControlName="firstName" class="form-control">
 						<cp-show-error [field]="firstNameFb"></cp-show-error>
 					</div>
 					<div class="col-md-3 mb-3">
-						<label for="" class="form-label">Apellido</label>
+						<label for="surName" class="form-label">Apellido</label>
 						<input type="text" formControlName="surName" class="form-control">
 						<cp-show-error [field]="surNameFb"></cp-show-error>
 					</div>
 					<div class="col-md-3 mb-3">
-						<label for="" class="form-label">DNI</label>
+						<label for="dni" class="form-label">DNI</label>
 						<input type="text" formControlName="dni" class="form-control">
 						<cp-show-error [field]="dniFb"></cp-show-error>
 					</div>
 					<div class="col-md-3 mb-3">
-						<label for="" class="form-label">Género</label>
+						<label for="gender" class="form-label">Género</label>
 						<div class="radioGroup">
 							<label for="">
 								Masculino
 								<input type="radio" formControlName="gender" value="true">
 							</label>
-							<label for="">
+							<label for="gender">
 								Femenino
 								<input type="radio" formControlName="gender" value="false">
 							</label>
 						</div>
 						<cp-show-error [field]="genderFb"></cp-show-error>
-					</div>
+					</div>					
 				</div>
 				<div class="row">
 					<div class="col-md-3 mb-3">
-						<label for="" class="form-label">Fecha de nacimiento</label>
+						<label for="birthDate" class="form-label">Fecha de nacimiento</label>
 						<input type="date" formControlName="birthDate" class="form-control">
 						<cp-show-error [field]="birthDateFb"></cp-show-error>
 					</div>
